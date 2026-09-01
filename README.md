@@ -1,138 +1,276 @@
 # ⚔️ QuizArena | Learn. Practice. Compete.
 
-QuizArena is a premium, full-stack educational collaborative learning platform that transforms standard DSA and Computer Science practice quizzes into interactive, gamified multiplayer arenas. 
+<div align="center">
 
-Built around a robust authoritative backend engine, the platform enforces strict role-based access controls and separates dashboards for **Teachers** and **Students** to match classroom dynamics.
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)](https://expressjs.com/)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socket.io&logoColor=white)](https://socket.io/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+
+**A modern, full-stack educational quiz platform bridging classroom learning and competitive gaming.**  
+Inspired by Wayground, Kahoot, and QuizKhelo with authoritative real-time multiplayer lobbies, AI quiz compilation, question banks, and dedicated Teacher & Student dashboards.
+
+[🌐 Open Live Demo](#-live-demo--instant-access) • [🎬 60-Second Test Guide](#-interactive-live-multiplayer-demo-walkthrough) • [🧑‍🏫 Teacher Portal](#-1-teacher-dashboard-instructor-hub) • [🎓 Student Portal](#-2-student-dashboard-gamified-learning) • [🛠️ Tech Specs](#-system-architecture--tech-stack)
+
+</div>
 
 ---
 
-## 🔑 Sandbox Credentials & Fast Login
-Use these credentials on the landing page selector to log in instantly:
+## 🌐 Live Demo & Instant Access
+
+The application is running locally and hot-reloaded:
+
+| Service | URL | Status | Description |
+| :--- | :--- | :--- | :--- |
+| **Frontend Portal** | [**http://localhost:5173/**](http://localhost:5173/) | `🟢 Live` | Full Student & Teacher Web Client |
+| **Backend API** | [**http://localhost:5000/health**](http://localhost:5000/health) | `🟢 Live` | Express & Socket.IO Authoritative Engine |
+| **GitHub Repository** | [**github.com/Suhas-Saur/QuizGround**](https://github.com/Suhas-Saur/QuizGround.git) | `🟢 Active` | Source code, models & seeds |
+
+### 🔑 Sandbox Logins (Auto-Seeded & Ready)
 
 > [!TIP]
-> **DEVELOPER SHORTCUT:** Use the **Switch Role (🔄)** button at the top right of the navigation header on any dashboard to instantly toggle between accounts!
+> **DEVELOPER SHORTCUT:** Use the **Switch Role (🔄)** button at the top right of the navbar on any dashboard to toggle between Teacher and Student accounts instantly without logging in and out!
 
-| Role | Email | Password | Primary Use Case |
+| Account Type | Email | Password | Preloaded Capabilities |
 | :--- | :--- | :--- | :--- |
-| **🧑‍🏫 Teacher Account** | `teacher@quizarena.com` | `password123` | Host live games, manage classes, review reports |
-| **🎓 Student Account** | `student@quizarena.com` | `password123` | Play practice mode, enter live room PINs, view XP levels |
+| **🧑‍🏫 Teacher** | `teacher@quizarena.com` | `password123` | Host live rooms, AI Question Assistant, Question Bank, Homework assignments, Class management, Analytics reports |
+| **🎓 Student** | `student@quizarena.com` | `password123` | 20 practice quizzes, streak tracking, XP leaderboards, live room PIN joining, review incorrect answers |
+| **🎓 Student 2** | `rahul@quizarena.com` | `password123` | Secondary student account for multi-player lobby testing |
+| **🎓 Student 3** | `ananya@quizarena.com` | `password123` | Tertiary student account for competitive leaderboard testing |
 
 ---
 
-## 🎭 Dual Portal Options: Teacher vs. Student
+## 🎬 Interactive Live Multiplayer Demo Walkthrough
 
-QuizArena separates users into two highly specialized experiences:
-
-### 🧑‍🏫 1. The Teacher Dashboard (Instructor Hub)
-Designed for classroom projectors, lesson planning, and curriculum tracking.
+Test the real-time Socket.IO multiplayer battle in **under 2 minutes** using two browser tabs:
 
 ```
-+-----------------------------------------------------------------+
-|                         TEACHER SIDEBAR                         |
-+-----------------------------------------------------------------+
-| [Dashboard] -> [My Quizzes] -> [Create Quiz] -> [Classes]     |
-| [Assignments] -> [Question Bank] -> [Reports & Analytics]       |
-+-----------------------------------------------------------------+
++---------------------------+       Socket.IO       +---------------------------+
+|  TAB 1: TEACHER (Host)    |  <=================>  |   TAB 2: STUDENT (Player) |
+|  - Creates Room           |       Real-Time       |   - Enters 6-Digit PIN    |
+|  - Projector View (QR)    |     Authoritative     |   - Waits in Lobby        |
+|  - Controls Game Flow     |        Scoring        |   - Answers in Real-Time  |
++---------------------------+                       +---------------------------+
 ```
 
-* **📚 Import from Question Bank:** Access pre-curated collections of standard DSA and CS questions from sites like LeetCode and GeeksforGeeks, filtered by topic and difficulty.
-* **⚡ AI Question Preparation Assistant:** An integrated compiler assistant where you select a topic keyword and count to automatically auto-fill multiple questions with correct answers, options, and explanations.
-* **🎥 Classroom Projector Host View (`/host/:roomCode`):** An high-contrast dark theme projector layout showcasing joined rosters in real-time, active question timers, and an animated 3D podium standings slide.
-* **📊 Class Homework Manager:** Lock classes behind access codes, distribute assignments, set due deadlines, limit retry attempts, and export detailed spreadsheet performance reports as CSVs.
+1. **Tab 1 (Teacher Host):**
+   * Open [http://localhost:5173/login](http://localhost:5173/login) and log in with `teacher@quizarena.com` / `password123`.
+   * On the **Teacher Dashboard**, pick any quiz (e.g. *Algorithms - Practice Set #1*) and click **Live Host**.
+   * You will be taken to the **Classroom Projector Host Screen** (`/teacher/host/:code`) displaying a **6-digit Room PIN** and a live **QR Code**.
+
+2. **Tab 2 (Student Player):**
+   * Open an **Incognito Window** or second browser tab at [http://localhost:5173/](http://localhost:5173/).
+   * Log in with `student@quizarena.com` / `password123` (or click **Join Quiz** from the landing page).
+   * Click **Join Quiz** in the navigation bar, type in the 6-digit PIN from Tab 1, and click **Join Room**.
+
+3. **Experience the Live Match:**
+   * **Real-time Roster Sync:** Tab 1 instantly displays the student's avatar and name on the projector screen.
+   * **Teacher Launches Quiz:** Click **Launch Quiz** on Tab 1. The questions are synchronized to Tab 2 with live animated countdown timers.
+   * **Authoritative Scoring:** Submit answers on Tab 2. Faster correct answers automatically earn speed XP bonuses computed strictly on the backend.
+   * **Live Standings & Podium:** View animated podium standings and question-by-question breakdown charts.
 
 ---
 
-### 🎓 2. The Student Dashboard (Gamified Portal)
-A mobile-first dashboard focusing on practice, review, and status progression.
+## 🎭 Dual Experience Portals
+
+QuizArena completely separates user interfaces based on role:
 
 ```
-+-----------------------------------------------------------------+
-|                       STUDENT BOTTOM MENU                       |
-+-----------------------------------------------------------------+
-| [Home/Stats] -> [Practice Browser] -> [Join Lobby] -> [Ranks]   |
-+-----------------------------------------------------------------+
+                                  QuizArena
+                                     |
+               +---------------------+---------------------+
+               |                                           |
+      🧑‍🏫 Teacher Portal                           🎓 Student Portal
+       ├── AI Quiz Builder                         ├── Practice Catalog (20+ Quizzes)
+       ├── Question Bank (LeetCode/GFG)            ├── Gamified XP & Streak HUD
+       ├── Classroom Projector (/host/:code)       ├── Live PIN/QR Join Lobby
+       ├── Homework & Class Management             ├── Global & Class Leaderboards
+       └── CSV Performance Reports                 └── Answer Review & Explanations
 ```
-
-* **🔥 Daily Streaks & XP Progressions:** Prominently displays Flame counters and Level stats based on consecutive daily quiz completions to encourage daily learning.
-* **🎯 Practice Browser Engine:** Filter 20 preloaded quizzes across subjects (DBMS, Networks, DSA, OS, Web Dev, Python, C++, Java) and difficulties (Easy, Medium, Hard, Expert).
-* **🎮 Authoritative Game Play:** Participate in classic, student-paced, or speed challenge quizzes with instant response validations, countdown rings, and immediate code explanations.
-* **🏆 Leaderboard Arena:** Review rankings globally, by college class, or among added friends. Includes an Achievements tab tracking badge status (e.g. "Speed Demon", "Perfect Score").
 
 ---
 
-## 🔄 Real-Time Live Quiz Handshake
+### 🧑‍🏫 1. Teacher Dashboard (Instructor Hub)
 
-This diagram shows how Socket.IO coordinates a live classroom competition between the host teacher and active students:
+Designed specifically for lecture halls, projectors, curriculum planning, and student tracking:
+
+* **⚡ AI Question Preparation Assistant:**
+  * Select any topic (e.g., `Arrays`, `Dynamic Programming`, `SQL`).
+  * Choose custom question counts (**more than 3**, configurable up to 20 questions) and difficulty (`Easy`, `Medium`, `Hard`, `Expert`).
+  * Click **AI Auto-Fill** to instantly compile formatted questions with options, correct answers, and thorough explanations.
+* **📚 Integrated Question Bank:**
+  * Search curated libraries of standard CS/DSA questions (LeetCode, GeeksforGeeks, Gate, Wayground style).
+  * Filter by topic and difficulty, review questions, and check items to import them directly into active drafts.
+* **🎥 Classroom Projector Host View (`/teacher/host/:roomCode`):**
+  * High-contrast dark theme optimized for auditorium projectors.
+  * Large 6-digit PIN and auto-generated QR code for quick mobile scanning.
+  * Live participant roster animations with real-time disconnect/reconnect resilience.
+* **📊 Class Homework Manager & Assignments:**
+  * Group students into custom classes with auto-generated class join codes (e.g., `DSA309`).
+  * Assign quizzes as homework with strict start dates, deadlines, and attempt limits.
+* **📈 In-Depth Reports & CSV Export:**
+  * View question-by-question accuracy percentages, average response times, and identify concepts students struggle with most.
+  * One-click CSV export of full classroom grades.
+
+---
+
+### 🎓 2. Student Dashboard (Gamified Learning)
+
+A mobile-responsive portal focused on continuous practice, habit building, and competitive play:
+
+* **🔥 Streak & XP Gamification HUD:**
+  * Consecutive day streak tracker with flame animations.
+  * XP levels with visual progression bars and unlockable badges (*"First Quiz"*, *"Speed Demon"*, *"Perfect Score"*, *"Top 10"*).
+* **🎯 Practice Quiz Engine (QuizKhelo Concept):**
+  * Browse and search 20 pre-seeded quizzes across Computer Science disciplines:
+    * *Data Structures (Arrays, Linked Lists, Trees, Graphs, Hashing)*
+    * *Algorithms (Sorting, Binary Search, Dynamic Programming)*
+    * *Operating Systems, Computer Networks, DBMS & SQL*
+    * *Web Development (React, JavaScript, Node.js), Python, Java, C++*
+  * Multiple Question Types: Multiple Choice, True/False, Multiple Select, Fill-in-the-Blank.
+  * Instant feedback mode with detailed step-by-step explanations.
+* **🎮 Multiplayer Room Joiner:**
+  * Clean keypad interface for entering 6-digit classroom room codes.
+  * Camera QR scanner support for mobile devices.
+* **🏆 Multi-Tier Leaderboards:**
+  * Compare standing **Globally**, within your **Enrolled Class**, or among **Friends**.
+  * Filter rankings by Weekly, Monthly, or All-Time points.
+* **📝 Question Review & Analytics:**
+  * Post-quiz result screens showing score, accuracy %, time taken, correct vs. incorrect breakdown, and recommendations for improvement.
+
+---
+
+## 🔄 Socket.IO Live Game State Machine
 
 ```mermaid
-sequenceDiagram
-    autonumber
-    actor Teacher as 🧑‍🏫 Teacher (Host)
-    participant Server as ⚙️ Authoritative Server
-    actor Student as 🎓 Student (Player)
-
-    Note over Teacher: Clicks "Live Host" on Quiz
-    Teacher->>Server: room:create (Quiz ID)
-    Server-->>Teacher: room:created (6-digit PIN & QR)
-    
-    Note over Student: Enters PIN in Join Screen
-    Student->>Server: room:join (PIN, Name)
-    Server-->>Student: room:joined (Lobby Info)
-    Server->>Teacher: room:participant-update (Roster List)
-    
-    Note over Teacher: Clicks "Launch Quiz"
-    Teacher->>Server: room:start
-    Server->>Student: quiz:question (Question 1, no answers revealed)
-    
-    Note over Student: Selects answer option
-    Student->>Server: quiz:answer (Choice, Timing)
-    Note over Server: Authoritatively validates answer & computes speed XP bonus
-    
-    Server->>Teacher: quiz:question-end (Roster statistics)
-    Server->>Student: quiz:question-end (Personal correctness & points)
-    Teacher->>Server: quiz:next-question
+stateDiagram-v2
+    [*] --> LOBBY: Teacher creates live room
+    LOBBY --> STARTING: Students join via 6-digit PIN
+    STARTING --> QUESTION_ACTIVE: Teacher clicks Launch Quiz
+    QUESTION_ACTIVE --> QUESTION_ENDED: Timer expires OR all answered
+    QUESTION_ENDED --> LEADERBOARD: Intermediate rankings displayed
+    LEADERBOARD --> QUESTION_ACTIVE: Next question
+    LEADERBOARD --> PODIUM_COMPLETED: Final question completed
+    PODIUM_COMPLETED --> [*]: Report saved & room archived
 ```
+
+### Real-Time Authoritative Event Protocol
+
+| Event Name | Direction | Payload | Purpose |
+| :--- | :--- | :--- | :--- |
+| `room:create` | Client ➔ Server | `{ quizId, settings }` | Teacher requests live lobby generation |
+| `room:join` | Client ➔ Server | `{ roomCode, studentId, name }` | Student enters 6-digit PIN |
+| `room:participant-update` | Server ➔ Client | `{ participants, count }` | Broadcasts joined player list to lobby |
+| `room:start` | Client ➔ Server | `{ roomCode }` | Teacher initiates game countdown |
+| `quiz:question` | Server ➔ Client | `{ question, options, timer, index }` | Broadcasts current question (answers stripped) |
+| `quiz:answer` | Client ➔ Server | `{ questionIndex, answer, timeTaken }` | Student submits selected answer |
+| `quiz:question-end` | Server ➔ Client | `{ correctAnswer, explanation, stats }` | Server reveals answers & computes speed XP |
+| `quiz:leaderboard` | Server ➔ Client | `{ standings: [...] }` | Broadcasts live ranked leaderboard |
+| `quiz:end` | Server ➔ Client | `{ podium, finalScores }` | Final game completion and podium event |
 
 ---
 
-## 🛠️ Monorepo Directory Layout
+## 🛠️ System Architecture & Tech Stack
 
 ```
-quiz-arena/
-├── shared/                 # Shared TypeScript models (Quiz, User, Room, Attempt)
+QuizArena/
+├── shared/
+│   └── types.ts            # Shared TypeScript interfaces (User, Quiz, Question, Room, Attempt)
 │
-├── server/                 # Node.js + Express Backend
+├── server/                 # Express, Node.js, Socket.IO, Mongoose
 │   ├── src/
-│   │   ├── config/         # Database connection & MongoMemoryServer fallbacks
-│   │   ├── controllers/    # API controllers (AI generation, question banks)
-│   │   ├── middleware/     # Role-based authorization & JWT validation
-│   │   ├── socket/         # Authoritative room handlers (authoritative scoring)
-│   │   └── seed.ts         # Database auto-seeder (20 standard subjects quizzes)
+│   │   ├── config/db.ts    # Dual DB: MongoMemoryServer (in-memory zero setup) + MongoDB Atlas
+│   │   ├── controllers/    # Auth, Quizzes, Question Bank, Rooms, Attempts, Classes, Reports
+│   │   ├── middleware/     # JWT verification & role authorization (Student/Teacher)
+│   │   ├── models/         # 8 Mongoose models (User, Quiz, Room, Class, Assignment, etc.)
+│   │   ├── services/       # AI Generator & Question Bank services
+│   │   ├── socket/         # Authoritative room & scoring event controllers
+│   │   └── seed.ts         # Seeder: 20 comprehensive subject quizzes & test users
 │   └── package.json
 │
-└── client/                 # React + Vite Frontend
+└── client/                 # React 18, Vite, Tailwind CSS, Recharts, Framer Motion
     ├── src/
-    │   ├── context/        # Authentication & Theme state providers
-    │   ├── layouts/        # Dashboard split view layouts (Top Nav, Sidebars)
-    │   ├── pages/          # 15+ Custom pages (Quiz Builder, Live Projector, Ranks)
-    │   └── services/       # Socket.IO client handshakes & API connectors
+    │   ├── context/        # AuthContext (sessions) & ThemeContext (Light/Dark mode)
+    │   ├── layouts/        # DashboardLayout (role-aware sidebars, Switch Role toggle)
+    │   ├── pages/          # 15 Custom Views (Landing, Dashboards, Builder, Host, Practice, etc.)
+    │   └── services/       # Axios API client & Socket.IO singleton
     └── package.json
 ```
 
 ---
 
-## 🚀 Running Locally
+## 🚀 Running Locally from Scratch
 
-1. **Verify Ports:** Ensure ports `5000` (Backend API) and `5173`/`5174` (Vite client) are free.
-2. **Launch Backend:**
-   ```bash
-   cd server
-   npm run dev
-   ```
-   *(Automatically boots `mongodb-memory-server` in-memory and seeds quizzes if Mongoose is missing a local daemon).*
-3. **Launch Client:**
-   ```bash
-   cd client
-   npm run dev
-   ```
-4. **Open Portal:** Navigate to [http://localhost:5173/](http://localhost:5173/) to start practicing!
+### Prerequisites
+* **Node.js**: v18.0 or higher
+* **npm**: v9.0 or higher
+* *(Optional)* MongoDB Community Server or MongoDB Atlas (if not installed, `mongodb-memory-server` boots automatically in RAM!).
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Suhas-Saur/QuizGround.git
+cd QuizGround
+```
+
+### 2. Configure Environment Variables
+Copy `.env.example` to both root and `server/.env`:
+```bash
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/quizarena
+JWT_SECRET=quizarena_super_secret_jwt_key_987654321
+CLIENT_URL=http://localhost:5173
+```
+
+### 3. Install Dependencies
+```bash
+# Install Server Dependencies
+cd server
+npm install
+
+# Install Client Dependencies
+cd ../client
+npm install
+```
+
+### 4. Run Development Servers
+Open two terminal windows:
+
+**Terminal 1 (Backend Server):**
+```bash
+cd server
+npm run dev
+```
+*Server runs on `http://localhost:5000`. On first run, it automatically populates in-memory collections with 20 demo quizzes, mock teachers, and mock students.*
+
+**Terminal 2 (Frontend Client):**
+```bash
+cd client
+npm run dev
+```
+*Vite client starts on `http://localhost:5173`.*
+
+---
+
+## 🌐 Deploying to Production
+
+### Deploying Frontend to Vercel
+1. Set the root directory to `client`.
+2. Build command: `npm run build`.
+3. Output directory: `dist`.
+4. Add environment variable: `VITE_API_URL=https://your-backend.onrender.com`.
+
+### Deploying Backend to Render / Railway
+1. Set the root directory to `server`.
+2. Build command: `npm run build` or `npm install`.
+3. Start command: `node dist/server.js` or `npm run dev`.
+4. Set environment variables: `PORT=5000`, `MONGODB_URI=<your_mongodb_atlas_uri>`, `JWT_SECRET=<your_secret>`, `CLIENT_URL=https://your-frontend.vercel.app`.
+
+---
+
+## 📄 License & Attribution
+QuizArena is open-source educational software distributed under the [MIT License](LICENSE).
+Built with ❤️ for teachers, learners, and competitive coders worldwide.
