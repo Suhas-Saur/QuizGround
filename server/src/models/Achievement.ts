@@ -6,7 +6,7 @@ export interface IAchievement extends Document {
   earnedAt: Date;
 }
 
-const AchievementSchema = new Schema<IAcheivement>(
+const AchievementSchema = new Schema<IAchievement>(
   {
     studentId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     type: { type: String, required: true },

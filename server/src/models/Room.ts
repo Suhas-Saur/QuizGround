@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { RoomStatus, QuizMode } from '../../../shared/types';
+import { RoomStatus, QuizMode } from '../shared/types';
 
 export interface IParticipant {
   studentId: mongoose.Types.ObjectId;

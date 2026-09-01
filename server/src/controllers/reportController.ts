@@ -82,7 +82,7 @@ export const getQuizReport = async (req: AuthRequest, res: Response): Promise<vo
       let totalTimeSpent = 0;
 
       attempts.forEach((a) => {
-        const matchingAns = a.answers.find(ans => ans.questionIndex === qIndex || ans.questionId.toString() === q._id?.toString());
+        const matchingAns = a.answers.find(ans => ans.questionIndex === qIndex || ans.questionId.toString() === (q as any)._id?.toString());
         if (matchingAns) {
           totalResponsesCount++;
           totalTimeSpent += matchingAns.timeTaken;
@@ -96,7 +96,7 @@ export const getQuizReport = async (req: AuthRequest, res: Response): Promise<vo
       const averageResponseTime = totalResponsesCount > 0 ? Math.round((totalTimeSpent / totalResponsesCount) * 10) / 10 : 0;
 
       return {
-        questionId: q._id,
+        questionId: (q as any)._id,
         questionText: q.question,
         type: q.type,
         difficulty: q.difficulty,

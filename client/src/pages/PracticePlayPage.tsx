@@ -25,7 +25,7 @@ export const PracticePlayPage: React.FC = () => {
   const [attemptsList, setAttemptsList] = useState<any[]>([]);
   const [quizStartTime] = useState<number>(Date.now());
 
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const fetchQuiz = async () => {

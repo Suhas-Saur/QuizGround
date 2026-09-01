@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { Difficulty, QuestionType } from '../../../shared/types';
+import { Difficulty, QuestionType } from '../shared/types';
 
 export interface IQuestion {
   type: QuestionType;

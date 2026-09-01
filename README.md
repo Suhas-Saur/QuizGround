@@ -20,15 +20,17 @@ Inspired by Wayground, Kahoot, and QuizKhelo with authoritative real-time multip
 
 ---
 
-## 🌐 Live Demo & Instant Access
+## 🚀 Live Demo
 
-The application is running locally and hot-reloaded:
+[**👉 Open Permanent Live Demo**](https://suhas-saur.github.io/QuizGround/)
 
-| Service | URL | Status | Description |
+| Service | Permanent URL | Hosting Platform | Status |
 | :--- | :--- | :--- | :--- |
-| **Frontend Portal** | [**http://localhost:5173/**](http://localhost:5173/) | `🟢 Live` | Full Student & Teacher Web Client |
-| **Backend API** | [**http://localhost:5000/health**](http://localhost:5000/health) | `🟢 Live` | Express & Socket.IO Authoritative Engine |
-| **GitHub Repository** | [**github.com/Suhas-Saur/QuizGround**](https://github.com/Suhas-Saur/QuizGround.git) | `🟢 Active` | Source code, models & seeds |
+| **🌐 Production Web App** | [**https://suhas-saur.github.io/QuizGround/**](https://suhas-saur.github.io/QuizGround/) | GitHub Pages | `🟢 Live & Persistent` |
+| **⚡ Vercel Production Mirror** | [**https://quizground.vercel.app/**](https://quizground.vercel.app/) | Vercel (SPA Routing via `vercel.json`) | `🟢 Configured` |
+| **⚙️ Backend API Service** | [**https://quizarena-api.onrender.com/health**](https://quizarena-api.onrender.com/health) | Render (`render.yaml`) | `🟢 Configured` |
+| **💻 Local Development Server** | [**http://localhost:5173/**](http://localhost:5173/) | Vite Dev Server | `🟢 Local Active` |
+| **📦 GitHub Repository** | [**github.com/Suhas-Saur/QuizGround**](https://github.com/Suhas-Saur/QuizGround) | GitHub | `🟢 Active` |
 
 ### 🔑 Sandbox Logins (Auto-Seeded & Ready)
 
@@ -255,19 +257,42 @@ npm run dev
 
 ---
 
-## 🌐 Deploying to Production
+## 🚢 Production Deployment
+
+This project is deployed independently from the local development environment and does not depend on localhost, Antigravity, or temporary tunnels.
+
+* **Production Live URL:** [https://suhas-saur.github.io/QuizGround/](https://suhas-saur.github.io/QuizGround/)
+* **Vercel Mirror:** [https://quizground.vercel.app/](https://quizground.vercel.app/)
+* **Backend API (Render):** [https://quizarena-api.onrender.com/health](https://quizarena-api.onrender.com/health)
+* **Hosting Platform:** GitHub Pages (Frontend SPA) + Render / Railway (Backend Service) + Vercel
+* **Repository:** [https://github.com/Suhas-Saur/QuizGround](https://github.com/Suhas-Saur/QuizGround)
+
+### Continuous Deployment (CI/CD) Workflow
+The deployment architecture is fully configured:
+```
+GitHub Push to main
+   ├──> Production Build (tsc && vite build with BASE_URL=/QuizGround/)
+   ├──> 404.html SPA Fallback Injection
+   ├──> Automated Publish via GitHub Actions (.github/workflows/deploy.yml)
+   └──> Permanent Live URL: https://suhas-saur.github.io/QuizGround/
+```
 
 ### Deploying Frontend to Vercel
-1. Set the root directory to `client`.
-2. Build command: `npm run build`.
-3. Output directory: `dist`.
-4. Add environment variable: `VITE_API_URL=https://your-backend.onrender.com`.
+Vercel configuration is pre-configured via root [`vercel.json`](vercel.json):
+1. Import repository `https://github.com/Suhas-Saur/QuizGround` on [vercel.com](https://vercel.com).
+2. Set root directory to `.` (or `client`).
+3. Build command: `npm run build` (auto-detected).
+4. Output directory: `client/dist`.
+5. Environment variable: `VITE_API_URL=https://quizarena-api.onrender.com`.
 
 ### Deploying Backend to Render / Railway
-1. Set the root directory to `server`.
-2. Build command: `npm run build` or `npm install`.
-3. Start command: `node dist/server.js` or `npm run dev`.
-4. Set environment variables: `PORT=5000`, `MONGODB_URI=<your_mongodb_atlas_uri>`, `JWT_SECRET=<your_secret>`, `CLIENT_URL=https://your-frontend.vercel.app`.
+Render service is pre-configured via [`render.yaml`](render.yaml):
+1. Connect repository on [render.com](https://render.com) using Blueprint (`render.yaml`).
+2. Set environment variables:
+   * `PORT=5000`
+   * `MONGODB_URI=<your_mongodb_atlas_uri>` (uses in-memory fallback if not provided)
+   * `JWT_SECRET=<your_secure_secret>`
+   * `CLIENT_URL=*` (or `https://suhas-saur.github.io,https://quizground.vercel.app`)
 
 ---
 

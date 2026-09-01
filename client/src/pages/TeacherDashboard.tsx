@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { Quiz } from '@shared/types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
-import { Play, Plus, BookOpen, Users, FileSpreadsheet, Trash2, Calendar, Star, BarChart3, Settings, ShieldCheck } from 'lucide-react';
+import { Play, Plus, BookOpen, Users, FileSpreadsheet, Trash2, Calendar, Star, BarChart3, Settings, ShieldCheck, TrendingUp } from 'lucide-react';
 
 export const TeacherDashboard: React.FC = () => {
   const navigate = useNavigate();

@@ -55,7 +55,7 @@ export const getAssignments = async (req: AuthRequest, res: Response): Promise<v
         .populate('classId', 'name subject');
     } else {
       // Find classes student is enrolled in
-      const enrolledClasses = await Class.find({ students: req.user._id });
+      const enrolledClasses = await Class.find({ students: req.user?._id });
       const classIds = enrolledClasses.map(c => c._id);
 
       assignments = await Assignment.find({ classId: { $in: classIds } })
@@ -67,7 +67,7 @@ export const getAssignments = async (req: AuthRequest, res: Response): Promise<v
     // Enhance assignments with submission/attempt status for students
     const enhancedAssignments = await Promise.all(
       assignments.map(async (assign) => {
-        const assignmentObj = assign.toObject();
+        const assignmentObj: any = assign.toObject();
         if (req.user?.role === 'student') {
           const attempts = await Attempt.find({
             studentId: req.user._id,

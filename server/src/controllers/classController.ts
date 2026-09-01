@@ -87,12 +87,17 @@ export const joinClass = async (req: AuthRequest, res: Response): Promise<void> 
       return;
     }
 
-    if (targetClass.students.includes(req.user?._id)) {
+    if (!req.user?._id) {
+      res.status(401).json({ success: false, message: 'Not authenticated' });
+      return;
+    }
+
+    if (targetClass.students.includes(req.user._id)) {
       res.status(400).json({ success: false, message: 'You are already enrolled in this class' });
       return;
     }
 
-    targetClass.students.push(req.user?._id);
+    targetClass.students.push(req.user._id);
     await targetClass.save();
 
     res.status(200).json({

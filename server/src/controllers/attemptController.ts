@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import mongoose from 'mongoose';
 import Attempt from '../models/Attempt';
 import User from '../models/User';
 import Achievement from '../models/Achievement';

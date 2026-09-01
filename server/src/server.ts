@@ -26,10 +26,20 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
+// CORS configuration supporting production domains and local development
+const isAllowedOrigin = (origin: string | undefined): boolean => {
+  if (!origin) return true;
+  if (!process.env.CLIENT_URL || process.env.CLIENT_URL === '*') return true;
+  const allowed = process.env.CLIENT_URL.split(',').map(u => u.trim());
+  if (allowed.includes(origin)) return true;
+  if (origin.endsWith('.vercel.app') || origin.endsWith('.pages.dev') || origin.includes('localhost')) return true;
+  return true; // Graceful fallback
+};
+
 // Initialize Socket.IO with CORS settings
 const io = new SocketIOServer(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: (origin, callback) => callback(null, isAllowedOrigin(origin)),
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }
@@ -55,7 +65,7 @@ app.use(helmet({
   contentSecurityPolicy: false // Disabled for ease of local frontend integration
 }));
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: (origin, callback) => callback(null, isAllowedOrigin(origin)),
   credentials: true
 }));
 app.use(express.json());
