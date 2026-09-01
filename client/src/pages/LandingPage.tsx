@@ -5,9 +5,10 @@ import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 
 export const LandingPage: React.FC = () => {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
+  const [loggingIn, setLoggingIn] = useState(false);
 
   // Redirect to appropriate dashboard if already logged in
   useEffect(() => {
@@ -19,6 +20,24 @@ export const LandingPage: React.FC = () => {
       }
     }
   }, [user, navigate]);
+
+  const handleInstantLogin = async (role: 'teacher' | 'student') => {
+    const credEmail = role === 'teacher' ? 'teacher@quizarena.com' : 'student@quizarena.com';
+    const credPassword = 'password123';
+    setLoggingIn(true);
+    try {
+      await login(credEmail, credPassword);
+      if (role === 'teacher') {
+        navigate('/teacher/dashboard');
+      } else {
+        navigate('/student/dashboard');
+      }
+    } catch {
+      navigate('/login');
+    } finally {
+      setLoggingIn(false);
+    }
+  };
 
   // Mock live quiz preview animation state
   const [previewStep, setPreviewStep] = useState(0);
@@ -88,13 +107,29 @@ export const LandingPage: React.FC = () => {
             QuizArena
           </span>
         </div>
-        <div className="flex items-center space-x-4">
-          <Link to="/join" className="text-sm font-semibold text-slate-600 dark:text-dark-100 hover:text-primary-500">
+        <div className="flex items-center space-x-3">
+          <Link to="/join" className="text-sm font-semibold text-slate-600 dark:text-dark-100 hover:text-primary-500 hidden sm:inline-block">
             Join Room
           </Link>
           <Link to="/login" className="text-sm font-semibold text-slate-600 dark:text-dark-100 hover:text-primary-500">
             Sign In
           </Link>
+          <button
+            onClick={() => handleInstantLogin('teacher')}
+            disabled={loggingIn}
+            className="hidden md:inline-flex items-center space-x-1 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-bold px-3 py-1.5 rounded-xl text-xs shadow-sm hover:bg-indigo-100 transition active:scale-95"
+          >
+            <span>🧑‍🏫</span>
+            <span>Teacher</span>
+          </button>
+          <button
+            onClick={() => handleInstantLogin('student')}
+            disabled={loggingIn}
+            className="hidden md:inline-flex items-center space-x-1 bg-primary-50 dark:bg-primary-950/40 border border-primary-200 dark:border-primary-800 text-primary-700 dark:text-primary-300 font-bold px-3 py-1.5 rounded-xl text-xs shadow-sm hover:bg-primary-100 transition active:scale-95"
+          >
+            <span>🎓</span>
+            <span>Student</span>
+          </button>
           <Link
             to="/login"
             className="bg-primary-600 hover:bg-primary-700 text-white font-bold px-4 py-2 rounded-xl text-sm shadow-md transition"
@@ -132,6 +167,36 @@ export const LandingPage: React.FC = () => {
             >
               Start Practicing Mode
             </Link>
+          </div>
+
+          {/* Instant One-Click Login Bar */}
+          <div className="pt-2 border-t border-slate-200/80 dark:border-dark-800/80">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+              <span className="text-xs font-bold text-slate-500 dark:text-dark-300 uppercase tracking-wider flex items-center gap-1.5">
+                <Sparkles size={14} className="text-amber-500" />
+                Instant Demo Access:
+              </span>
+              <div className="flex items-center gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => handleInstantLogin('teacher')}
+                  disabled={loggingIn}
+                  className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/50 hover:bg-indigo-100 hover:border-indigo-400 text-indigo-700 dark:text-indigo-300 text-xs font-bold shadow-sm transition active:scale-95 disabled:opacity-50"
+                >
+                  <span className="text-base">🧑‍🏫</span>
+                  <span>Instant Teacher Login</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleInstantLogin('student')}
+                  disabled={loggingIn}
+                  className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-950/50 hover:bg-primary-100 hover:border-primary-400 text-primary-700 dark:text-primary-300 text-xs font-bold shadow-sm transition active:scale-95 disabled:opacity-50"
+                >
+                  <span className="text-base">🎓</span>
+                  <span>Instant Student Login</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
