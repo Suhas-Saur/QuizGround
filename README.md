@@ -31,16 +31,25 @@ Inspired by Wayground, Kahoot, and QuizKhelo with authoritative real-time multip
 
 ## 🚀 Live Demo
 
-### 👉 [**Click Here to Open Permanent Live Demo: https://suhas-saur.github.io/QuizGround/**](https://suhas-saur.github.io/QuizGround/)
+<div align="center">
 
-| Service | Permanent URL | Hosting Platform | Status |
-| :--- | :--- | :--- | :--- |
-| **🌐 Production Web App** | [**https://suhas-saur.github.io/QuizGround/**](https://suhas-saur.github.io/QuizGround/) | GitHub Pages | `🟢 Live & Working` |
-| **⚡ Instant Login Portal** | [**https://suhas-saur.github.io/QuizGround/#/login**](https://suhas-saur.github.io/QuizGround/#/login) | GitHub Pages | `🟢 1-Click Fast Login` |
-| **🎮 Join Game by PIN** | [**https://suhas-saur.github.io/QuizGround/#/join**](https://suhas-saur.github.io/QuizGround/#/join) | GitHub Pages | `🟢 Mobile PIN Keypad` |
-| **⚡ Vercel Production Mirror** | [**https://quizground.vercel.app/**](https://quizground.vercel.app/) | Vercel (SPA Routing via `vercel.json`) | `🟢 Configured` |
-| **⚙️ Backend API Service** | [**https://quizarena-api.onrender.com/health**](https://quizarena-api.onrender.com/health) | Render (`render.yaml`) | `🟢 Configured` |
-| **💻 Local Development Server** | [**http://localhost:5173/**](http://localhost:5173/) | Vite Dev Server | `🟢 Local Active` |
+[![Live Demo](https://img.shields.io/badge/🌐_LIVE_DEMO-suhas--saur.github.io%2FQuizGround-22c55e?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=15803d)](https://suhas-saur.github.io/QuizGround/)
+
+<br />
+
+### 👉 **[CLICK HERE TO OPEN LIVE APPLICATION: https://suhas-saur.github.io/QuizGround/](https://suhas-saur.github.io/QuizGround/)** 👈
+
+</div>
+
+| Portal / Feature | Direct Permanent Live Link | Description |
+| :--- | :--- | :--- |
+| **🌐 QuizGround Main App** | [**https://suhas-saur.github.io/QuizGround/**](https://suhas-saur.github.io/QuizGround/) | Full landing page with instant sandbox demo access |
+| **🧑‍🏫 Teacher Sandbox Login** | [**https://suhas-saur.github.io/QuizGround/#/login**](https://suhas-saur.github.io/QuizGround/#/login) | 1-click instant login button into Teacher Hub |
+| **🎓 Student Sandbox Login** | [**https://suhas-saur.github.io/QuizGround/#/login**](https://suhas-saur.github.io/QuizGround/#/login) | 1-click instant login button into Student Practice |
+| **🎮 Join Game Lobby by PIN** | [**https://suhas-saur.github.io/QuizGround/#/join**](https://suhas-saur.github.io/QuizGround/#/join) | Mobile tactile keypad to enter 6-digit room PINs |
+
+> [!IMPORTANT]
+> **Case Sensitivity:** GitHub Pages repository URLs are case-sensitive. Ensure the path is formatted with capital `Q` and `G`: `https://suhas-saur.github.io/QuizGround/`. All direct links above include the exact casing.
 
 ### 🔑 Sandbox Logins (Auto-Seeded & Ready)
 
@@ -292,10 +301,9 @@ npm run dev
 
 This project is deployed independently from the local development environment and does not depend on localhost, Antigravity, or temporary tunnels.
 
-* **Production Live URL:** [https://suhas-saur.github.io/QuizGround/](https://suhas-saur.github.io/QuizGround/)
-* **Vercel Mirror:** [https://quizground.vercel.app/](https://quizground.vercel.app/)
-* **Backend API (Render):** [https://quizarena-api.onrender.com/health](https://quizarena-api.onrender.com/health)
-* **Hosting Platform:** GitHub Pages (Frontend SPA) + Render / Railway (Backend Service) + Vercel
+* **Production Live App:** [https://suhas-saur.github.io/QuizGround/](https://suhas-saur.github.io/QuizGround/)
+* **Direct Sandbox Access:** [https://suhas-saur.github.io/QuizGround/#/login](https://suhas-saur.github.io/QuizGround/#/login)
+* **Hosting Platform:** GitHub Pages (Automated via `gh-pages` branch)
 * **Repository:** [https://github.com/Suhas-Saur/QuizGround](https://github.com/Suhas-Saur/QuizGround)
 
 ### Continuous Deployment (CI/CD) Workflow
