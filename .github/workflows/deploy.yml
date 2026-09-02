@@ -33,7 +33,7 @@ jobs:
           npm run build
           cp dist/index.html dist/404.html
         env:
-          BASE_URL: /QuizGround/
+          BASE_URL: ./
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

@@ -12,9 +12,18 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 
 **A modern, full-stack educational quiz platform bridging classroom learning and competitive gaming.**  
-Inspired by Wayground, Kahoot, and QuizKhelo with authoritative real-time multiplayer lobbies, AI quiz compilation, question banks, and dedicated Teacher & Student dashboards.
+Inspired by Wayground, Kahoot, and QuizKhelo with authoritative real-time multiplayer lobbies, AI quiz compilation, question banks, dedicated Teacher & Student dashboards, and a mobile-friendly smartphone mode.
 
-[🌐 Open Live Demo](#-live-demo--instant-access) • [🎬 60-Second Test Guide](#-interactive-live-multiplayer-demo-walkthrough) • [🧑‍🏫 Teacher Portal](#-1-teacher-dashboard-instructor-hub) • [🎓 Student Portal](#-2-student-dashboard-gamified-learning) • [🛠️ Tech Specs](#-system-architecture--tech-stack)
+<p align="center">
+  <a href="https://suhas-saur.github.io/QuizGround/">
+    <img src="https://img.shields.io/badge/🚀_LIVE_DEMO-OPEN_QUIZGROUND_NOW-22c55e?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Demo" />
+  </a>
+  <a href="https://github.com/Suhas-Saur/QuizGround">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="Repository" />
+  </a>
+</p>
+
+[🌐 Open Live Demo](#-live-demo) • [🎬 60-Second Test Guide](#-interactive-live-multiplayer-demo-walkthrough) • [📱 Mobile Mode](#-mobile-option-mode) • [🧑‍🏫 Teacher Portal](#-1-teacher-dashboard-instructor-hub) • [🎓 Student Portal](#-2-student-dashboard-gamified-learning)
 
 </div>
 
@@ -22,15 +31,16 @@ Inspired by Wayground, Kahoot, and QuizKhelo with authoritative real-time multip
 
 ## 🚀 Live Demo
 
-[**👉 Open Permanent Live Demo**](https://suhas-saur.github.io/QuizGround/)
+### 👉 [**Click Here to Open Permanent Live Demo: https://suhas-saur.github.io/QuizGround/**](https://suhas-saur.github.io/QuizGround/)
 
 | Service | Permanent URL | Hosting Platform | Status |
 | :--- | :--- | :--- | :--- |
-| **🌐 Production Web App** | [**https://suhas-saur.github.io/QuizGround/**](https://suhas-saur.github.io/QuizGround/) | GitHub Pages | `🟢 Live & Persistent` |
+| **🌐 Production Web App** | [**https://suhas-saur.github.io/QuizGround/**](https://suhas-saur.github.io/QuizGround/) | GitHub Pages | `🟢 Live & Working` |
+| **⚡ Instant Login Portal** | [**https://suhas-saur.github.io/QuizGround/#/login**](https://suhas-saur.github.io/QuizGround/#/login) | GitHub Pages | `🟢 1-Click Fast Login` |
+| **🎮 Join Game by PIN** | [**https://suhas-saur.github.io/QuizGround/#/join**](https://suhas-saur.github.io/QuizGround/#/join) | GitHub Pages | `🟢 Mobile PIN Keypad` |
 | **⚡ Vercel Production Mirror** | [**https://quizground.vercel.app/**](https://quizground.vercel.app/) | Vercel (SPA Routing via `vercel.json`) | `🟢 Configured` |
 | **⚙️ Backend API Service** | [**https://quizarena-api.onrender.com/health**](https://quizarena-api.onrender.com/health) | Render (`render.yaml`) | `🟢 Configured` |
 | **💻 Local Development Server** | [**http://localhost:5173/**](http://localhost:5173/) | Vite Dev Server | `🟢 Local Active` |
-| **📦 GitHub Repository** | [**github.com/Suhas-Saur/QuizGround**](https://github.com/Suhas-Saur/QuizGround) | GitHub | `🟢 Active` |
 
 ### 🔑 Sandbox Logins (Auto-Seeded & Ready)
 
@@ -143,6 +153,27 @@ A mobile-responsive portal focused on continuous practice, habit building, and c
   * Filter rankings by Weekly, Monthly, or All-Time points.
 * **📝 Question Review & Analytics:**
   * Post-quiz result screens showing score, accuracy %, time taken, correct vs. incorrect breakdown, and recommendations for improvement.
+
+---
+
+### 📱 3. Mobile Option Mode (Smartphone Experience)
+
+A fully optimized mobile layout engineered for one-handed thumb interaction and competitive live play:
+
+* **📱 1-Click Desktop Mobile Simulation:**
+  * Toggle between **`📱 Mobile View`** and **`💻 Desktop View`** on desktop browsers anytime.
+  * Desktop users can test the mobile view wrapped in an iPhone-style chassis with dynamic island and status bar!
+* **🕹️ Tactile On-Screen PIN Keypad:**
+  * Large, circular numeric touch buttons (1–9, 0, ⌫ Backspace, Clear) for entering 6-digit room PINs.
+  * Eliminates mobile software keyboards bouncing or obscuring the submit button.
+  * Automatic submission upon entering the 6th digit.
+* **🎮 High-Contrast Gaming Answer Pads:**
+  * Kahoot/QuizKhelo-style geometric shape badges (▲ Coral, ◆ Blue, ● Amber, ■ Emerald) with 58px+ touch targets and spring tap feedback (`active:scale-[0.98]`).
+* **⚡ Bottom Navigation Bar with Raised Hero Action:**
+  * **Student Tab Bar:** 🏠 Home, 📚 Practice, **🎮 Join PIN** *(Center Raised Pulse)*, 🏆 Leaderboards, 👤 Progress.
+  * **Teacher Tab Bar:** 📊 Overview, 📚 Quizzes, **⚡ Create Quiz** *(Center Raised Pulse)*, 👥 Classes, 📈 Reports.
+* **🔥 Horizontal Fast-Action Rail:**
+  * Swipeable touch pills on mobile dashboard for 1-tap jumping to games, practice, and streak status.
 
 ---
 

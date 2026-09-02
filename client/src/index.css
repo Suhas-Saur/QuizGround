@@ -21,3 +21,35 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-slate-300 dark:bg-slate-800 rounded-full hover:bg-slate-400 dark:hover:bg-slate-700;
 }
+
+/* Mobile Friendly Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+/* Realistic Smartphone Bezel for Desktop Mobile Option Mode */
+.simulated-phone-wrapper {
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 44px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45), 0 0 0 12px #1e293b, 0 0 0 14px #0f172a;
+  overflow: hidden;
+  position: relative;
+  min-height: 844px;
+  border: 4px solid #334155;
+}
+

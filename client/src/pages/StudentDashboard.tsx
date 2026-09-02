@@ -101,18 +101,50 @@ export const StudentDashboard: React.FC = () => {
           <div className="flex space-x-3 pt-2">
             <Link
               to="/join"
-              className="bg-white text-indigo-700 hover:bg-slate-50 font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-md"
+              className="bg-white text-indigo-700 hover:bg-slate-50 font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-md active:scale-95"
             >
               Join Live Session
             </Link>
             <Link
               to="/student/practice"
-              className="bg-indigo-500/40 hover:bg-indigo-500/60 border border-indigo-400 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition"
+              className="bg-indigo-500/40 hover:bg-indigo-500/60 border border-indigo-400 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition active:scale-95"
             >
               Start Practice
             </Link>
           </div>
         </div>
+      </div>
+
+      {/* Mobile-Friendly Fast Action Carousel */}
+      <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-1 -mx-3 px-3 sm:mx-0 sm:px-0 select-none">
+        <Link
+          to="/join"
+          className="shrink-0 flex items-center space-x-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 active:scale-95 transition"
+        >
+          <span className="text-base">🎮</span>
+          <span>Join Live PIN</span>
+        </Link>
+        <Link
+          to="/student/practice"
+          className="shrink-0 flex items-center space-x-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-primary-600 to-primary-700 text-white font-bold text-xs shadow-md shadow-primary-600/20 active:scale-95 transition"
+        >
+          <span className="text-base">🚀</span>
+          <span>Quick Practice</span>
+        </Link>
+        <Link
+          to="/student/leaderboard"
+          className="shrink-0 flex items-center space-x-2 px-4 py-2.5 rounded-2xl bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 text-slate-800 dark:text-white font-bold text-xs shadow-sm active:scale-95 transition"
+        >
+          <span className="text-base">🏆</span>
+          <span>Ranks & Badges</span>
+        </Link>
+        <Link
+          to="/student/progress"
+          className="shrink-0 flex items-center space-x-2 px-4 py-2.5 rounded-2xl bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 text-slate-800 dark:text-white font-bold text-xs shadow-sm active:scale-95 transition"
+        >
+          <span className="text-base">🔥</span>
+          <span>Streak: {currentStreak}d</span>
+        </Link>
       </div>
 
       {/* Quick Gamification Cards */}

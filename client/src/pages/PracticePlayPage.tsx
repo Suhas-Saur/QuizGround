@@ -280,19 +280,27 @@ export const PracticePlayPage: React.FC = () => {
                   ? currentQuestion.correctAnswer.includes(opt)
                   : currentQuestion.correctAnswer.trim().toLowerCase() === opt.trim().toLowerCase();
 
-                let style = 'bg-slate-50 border-slate-200 dark:bg-dark-950 dark:border-dark-800 hover:bg-slate-100/50';
+                const badges = [
+                  { label: 'A', shape: '▲', color: 'bg-rose-500 text-white' },
+                  { label: 'B', shape: '◆', color: 'bg-blue-500 text-white' },
+                  { label: 'C', shape: '●', color: 'bg-amber-500 text-white' },
+                  { label: 'D', shape: '■', color: 'bg-emerald-500 text-white' }
+                ];
+                const badge = badges[idx % 4];
+
+                let style = 'bg-slate-50 border-slate-200 dark:bg-dark-950 dark:border-dark-800 hover:bg-slate-100/70';
                 
                 if (isSelected) {
-                  style = 'bg-primary-50 border-primary-500 dark:bg-primary-950/40';
+                  style = 'bg-primary-50/80 border-primary-500 dark:bg-primary-950/40 ring-2 ring-primary-500/20';
                 }
 
                 if (isAnswered) {
                   if (isCorrectOption) {
-                    style = 'bg-emerald-50 border-emerald-500 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-300 font-bold';
+                    style = 'bg-emerald-50 border-emerald-500 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 font-bold ring-2 ring-emerald-500/30';
                   } else if (isSelected && !isCorrectOption) {
-                    style = 'bg-red-50 border-red-500 dark:bg-red-950/20 text-red-600 dark:text-red-300';
+                    style = 'bg-red-50 border-red-500 dark:bg-red-950/30 text-red-700 dark:text-red-300 ring-2 ring-red-500/30';
                   } else {
-                    style = 'opacity-50 border-slate-200 dark:border-dark-800 bg-slate-50 dark:bg-dark-950';
+                    style = 'opacity-40 border-slate-200 dark:border-dark-800 bg-slate-50 dark:bg-dark-950';
                   }
                 }
 
@@ -301,11 +309,16 @@ export const PracticePlayPage: React.FC = () => {
                     key={opt}
                     disabled={isAnswered}
                     onClick={() => handleOptionToggle(opt)}
-                    className={`w-full border p-4 rounded-xl flex items-center justify-between transition duration-200 text-left text-sm ${style}`}
+                    className={`w-full min-h-[58px] border-2 p-3.5 sm:p-4 rounded-2xl flex items-center justify-between transition-all duration-150 text-left active:scale-[0.98] shadow-sm select-none ${style}`}
                   >
-                    <span>{opt}</span>
-                    {isAnswered && isCorrectOption && <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />}
-                    {isAnswered && isSelected && !isCorrectOption && <XCircle size={16} className="text-red-500 shrink-0" />}
+                    <div className="flex items-center space-x-3 sm:space-x-3.5 min-w-0 pr-2">
+                      <span className={`w-8 h-8 rounded-xl flex items-center justify-center font-black text-sm shrink-0 shadow-sm ${badge.color}`}>
+                        {badge.shape}
+                      </span>
+                      <span className="font-semibold text-sm sm:text-base leading-snug break-words">{opt}</span>
+                    </div>
+                    {isAnswered && isCorrectOption && <CheckCircle2 size={20} className="text-emerald-500 shrink-0 ml-2" />}
+                    {isAnswered && isSelected && !isCorrectOption && <XCircle size={20} className="text-red-500 shrink-0 ml-2" />}
                   </button>
                 );
               })}

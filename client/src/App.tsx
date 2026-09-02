@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { MobileModeProvider } from './context/MobileModeContext';
 import { DashboardLayout } from './layouts/DashboardLayout';
 
 // Import Pages
@@ -209,14 +210,24 @@ const AppContent: React.FC = () => {
   );
 };
 
+// Automatically use HashRouter on GitHub Pages to ensure zero 404s and no subpath redirect issues
+const isGitHubPages = typeof window !== 'undefined' && (
+  window.location.hostname.includes('github.io') ||
+  window.location.pathname.toLowerCase().includes('/quizground')
+);
+
 export const App: React.FC = () => {
+  const RouterComponent = isGitHubPages ? HashRouter : BrowserRouter;
+
   return (
-    <Router basename={import.meta.env.BASE_URL || '/'}>
+    <RouterComponent>
       <ThemeProvider>
         <AuthProvider>
-          <AppContent />
+          <MobileModeProvider>
+            <AppContent />
+          </MobileModeProvider>
         </AuthProvider>
       </ThemeProvider>
-    </Router>
+    </RouterComponent>
   );
 };
