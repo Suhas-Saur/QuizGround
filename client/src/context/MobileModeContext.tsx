@@ -19,7 +19,7 @@ export const MobileModeProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   const [isSimulatedMobile, setIsSimulatedMobile] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('quizarena_mobile_mode') === 'true';
+      return (localStorage.getItem('quizground_mobile_mode') || localStorage.getItem('quizarena_mobile_mode')) === 'true';
     }
     return false;
   });
@@ -36,14 +36,14 @@ export const MobileModeProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const toggleMobileMode = () => {
     setIsSimulatedMobile(prev => {
       const next = !prev;
-      localStorage.setItem('quizarena_mobile_mode', String(next));
+      localStorage.setItem('quizground_mobile_mode', String(next));
       return next;
     });
   };
 
   const setSimulatedMobile = (val: boolean) => {
     setIsSimulatedMobile(val);
-    localStorage.setItem('quizarena_mobile_mode', String(val));
+    localStorage.setItem('quizground_mobile_mode', String(val));
   };
 
   const isMobile = isScreenSmall || isSimulatedMobile;

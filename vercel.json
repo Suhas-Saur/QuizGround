@@ -1,7 +1,9 @@
 {
-  "buildCommand": "cd client && npm install && npm run build",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "name": "quizground",
+  "buildCommand": "npm run build --prefix client",
   "outputDirectory": "client/dist",
-  "framework": "vite",
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

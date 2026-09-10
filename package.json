@@ -1,0 +1,24 @@
+{
+  "name": "quizground",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QuizGround - Full-stack competitive DSA & classroom educational quiz platform",
+  "scripts": {
+    "build": "npm run build --prefix client",
+    "vercel-build": "npm run build --prefix client",
+    "start": "npm run start --prefix server",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client"
+  },
+  "keywords": [
+    "quiz",
+    "education",
+    "gamification",
+    "dsa",
+    "react",
+    "socketio",
+    "nodejs"
+  ],
+  "author": "Suhas Saur",
+  "license": "MIT"
+}

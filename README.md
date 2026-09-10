@@ -47,6 +47,7 @@ Inspired by Wayground, Kahoot, and QuizKhelo with authoritative real-time multip
 | **🧑‍🏫 Teacher Sandbox Login** | [**https://suhas-saur.github.io/QuizGround/#/login**](https://suhas-saur.github.io/QuizGround/#/login) | 1-click instant login button into Teacher Hub |
 | **🎓 Student Sandbox Login** | [**https://suhas-saur.github.io/QuizGround/#/login**](https://suhas-saur.github.io/QuizGround/#/login) | 1-click instant login button into Student Practice |
 | **🎮 Join Game Lobby by PIN** | [**https://suhas-saur.github.io/QuizGround/#/join**](https://suhas-saur.github.io/QuizGround/#/join) | Mobile tactile keypad to enter 6-digit room PINs |
+| **⚡ Deploy to Vercel** | [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSuhas-Saur%2FQuizGround) | 1-Click Instant Deployment to personal Vercel URL |
 
 > [!IMPORTANT]
 > **Case Sensitivity:** GitHub Pages repository URLs are case-sensitive. Ensure the path is formatted with capital `Q` and `G`: `https://suhas-saur.github.io/QuizGround/`. All direct links above include the exact casing.
@@ -316,13 +317,23 @@ GitHub Push to main
    └──> Permanent Live URL: https://suhas-saur.github.io/QuizGround/
 ```
 
-### Deploying Frontend to Vercel
-Vercel configuration is pre-configured via root [`vercel.json`](vercel.json):
-1. Import repository `https://github.com/Suhas-Saur/QuizGround` on [vercel.com](https://vercel.com).
-2. Set root directory to `.` (or `client`).
-3. Build command: `npm run build` (auto-detected).
-4. Output directory: `client/dist`.
-5. Environment variable: `VITE_API_URL=https://quizarena-api.onrender.com`.
+### ⚡ Deploying to Vercel (1-Click Instant Deployment)
+
+You can deploy QuizGround directly to Vercel with zero manual configuration. The repository includes a root `package.json`, root `vercel.json`, and client SPA rewrites.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSuhas-Saur%2FQuizGround)
+
+1. Click the **Deploy with Vercel** button above or import `https://github.com/Suhas-Saur/QuizGround` on [vercel.com/new](https://vercel.com/new).
+2. **Project Name:** `quizground` (pre-configured).
+3. **Framework & Build Settings:** Automatically detected from root `package.json` (`npm run build --prefix client` ➔ `client/dist`).
+4. Click **Deploy**. Vercel will build and assign your production domain (e.g. `https://quizground.vercel.app` or `https://quizground-<username>.vercel.app`).
+
+### 🛡️ Project Collision Prevention
+
+QuizGround is engineered with strict isolation so it **never collides** with other projects (such as CodeX or other local/cloud apps):
+* **Namespaced Storage Keys:** Authentication tokens, themes, and mobile simulation modes are namespaced to `quizground_token`, `quizground_theme`, and `quizground_mobile_mode`, preventing session leakage or login collisions across projects on localhost or shared domains.
+* **Isolated Project Namespace:** Configured with distinct package and project names (`quizground`) across root, client, and server to prevent overwrite collisions on Vercel or cloud hosts.
+* **Dual-Engine Routing:** Uses `HashRouter` when hosted on GitHub Pages subpaths (`/QuizGround/#/`) and clean standard `BrowserRouter` on Vercel root domains (`/login`), ensuring seamless navigation without URL collision.
 
 ### Deploying Backend to Render / Railway
 Render service is pre-configured via [`render.yaml`](render.yaml):
